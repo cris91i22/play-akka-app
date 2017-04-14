@@ -5,6 +5,7 @@ import dl.storage.Storage
 import domain._
 import play.api.Logger
 import services.CoreObjectServiceActor._
+import akka.pattern.pipe
 
 class CoreObjectServiceActor(storage: Storage) extends Actor {
 
@@ -14,8 +15,10 @@ class CoreObjectServiceActor(storage: Storage) extends Actor {
 
   def receiveLocal(ref: ActorRef, message: CoreObjectMessage): Unit = {
     Logger.info("Receive core actor message to perform basic operations...")
+    import context.dispatcher
+
     message match {
-      case CreateUserMessage(req) => sender() ! User(Some(1), "","")  //storage.users.create(User(name = req.name, email = req.email))
+      case CreateUserMessage(req) => pipe(storage.users.create(User(name = req.name, email = req.email))) to ref
       case CreateProfileMessage(prof) => sender() ! storage.profiles.create(prof)
       case CreateMatchMessage(matc) => sender() ! storage.matches.create(matc)
     }

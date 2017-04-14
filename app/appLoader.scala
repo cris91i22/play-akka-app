@@ -21,6 +21,8 @@ class ApplicationComponents(context: Context) extends BuiltInComponentsFromConte
   val igniteDB = new ExampleDB()
   val storage = new ExampleStorage(igniteDB.instance, TableQueries)
 
+  TableQueries.createActions()
+
   // Actors
   val coreObjectServiceActor: ActorRef = actorSystem.actorOf(CoreObjectServiceActor.props(storage), CoreObjectServiceActor.Name)
 

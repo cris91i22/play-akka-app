@@ -27,16 +27,18 @@ class ExampleDB(config: Config = ConfigFactory.load)(implicit ec: ExecutionConte
   }
 
   private def migrate(i: Database) = {
-//    try {
-//      logger.info("Running migration...")
-//      MigrationAssistant.migrate(i)
-//    }
-//    catch {
-//      case e: Throwable => {
-//        logger.error("Migration failed!")
-//        throw(e)
-//      }
-//    }
+    try {
+      Logger.info("Running migration...") //TODO execute migrations one time, if the tables are already created
+                                          // i do not need to create them again
+//      val allCommands = TableQueries.createActions()
+//      Await.result(i.run(DBIO.seq(allCommands: _*)), 5 seconds)
+    }
+    catch {
+      case e: Throwable => {
+        Logger.error("Migration failed!")
+        throw(e)
+      }
+    }
   }
 
   private def createInstance(config: Config) = {
