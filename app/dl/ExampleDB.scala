@@ -1,8 +1,8 @@
 package dl
 
 import com.typesafe.config.{Config, ConfigFactory}
-import play.api.{Logger, LoggerLike}
 import dl.utils.ExtendedPostgresDriver.api._
+import play.api.Logger
 
 import scala.concurrent.duration._
 import scala.concurrent.{Await, ExecutionContext}

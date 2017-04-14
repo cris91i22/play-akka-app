@@ -1,11 +1,13 @@
 package dl.storage
 
+import domain._
 import scala.concurrent.Future
 
 trait Storage {
-//  def users: BasicObjectStorage[User]
-//  def messages: BasicObjectStorage[Message]
-//
+  def users: BasicObjectStorage[User]
+  def profiles: BasicObjectStorage[Profile]
+  def matches: BasicObjectStorage[Match]
+
 //  def countUsers: StorageQuery0[Int]
 //  def retrieveUsersWithMessages: StorageQuery0[Map[User, Seq[Message]]]
 

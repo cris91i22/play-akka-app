@@ -18,5 +18,7 @@ trait ModelInteract[T] {
 }
 
 object ModelInteract {
-//  implicit val modelInteractUser = ModelInteractUser
+  implicit val modelInteractUser = ModelInteractUser
+  implicit val modelInteractProfile = ModelInteractProfile
+  implicit val modelInteractMatch = ModelInteractMatch
 }
